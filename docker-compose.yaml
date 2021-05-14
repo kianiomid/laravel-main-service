@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  mainservice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8001:8000
+    depends_on:
+      - main_db
+
+  main_db:
+    image: mysql:5.7.33
+    environment:
+      MYSQL_DATABASE: mainservice
+      MYSQL_USER: phpmyadmin
+      MYSQL_PASSWORD: asd123ASD!@
+      MYSQL_ROOT_PASSWORD: asd123ASD!@
+
+    volumes:
+      - ./storage/dbdata:/var/lib/mysql
+    ports:
+      - 33060:3306
